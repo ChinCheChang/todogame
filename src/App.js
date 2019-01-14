@@ -1,35 +1,42 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Route, withRouter, Link } from 'react-router-dom';
+import { Flipper } from 'react-flip-toolkit';
 
-const Header = styled.header`
+const Navbar = styled.header`
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid black;
   width: 100%;
-  z-index: 1;
   position: relative;
   background-color: #e6e6e6;
   z-index: 3;
-  a {
-    color: black;
-    &:hover {
-      font-weight: bold;
-    }
-  }
-  h1 {
+  h2 {
     font-weight: normal;
     font-size: 1rem;
     display: inline;
   }
 `;
 
+const IndexPage = () => <h3>hello</h3>;
+
 class App extends Component {
   render() {
     return (
-      <div>
-
-      </div>
+      <Flipper
+        flipKey={this.props.location.pathname + this.props.location.search}
+        decisionData={{
+          location: this.props.location,
+          search: this.props.search
+        }}
+      >
+        <Navbar>
+          <Link to="/">
+            <h2> Icon Demo App</h2>
+          </Link>
+        </Navbar>
+        <Route path="/" component={IndexPage} />
+      </Flipper>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
