@@ -7,13 +7,37 @@ const Navbar = styled.header`
   padding: 0.75rem 1rem;
   width: 100%;
   position: relative;
-  background-color: #e6e6e6;
+  background-color: white;
   z-index: 3;
-  h2 {
-    font-weight: normal;
-    font-size: 1rem;
-    display: inline;
+  box-shadow: 0 0 8px 2px rgba( 0, 0, 0, .2 );
+`;
+
+const FlexContents = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-left: 3rem;
+  padding-right: 3rem;
+`;
+
+const HomeIcon = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #495057;
+  font-size: 1.5625rem;
+  > i {
+    background-color: #fd7e14;
+    border-radius: 0.5rem 1rem;
+    padding: 0.8rem 0.7rem;
+    color: white;
   }
+`;
+
+const OtherIcon = styled.a`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
 `;
 
 const IndexPage = () => <h3>hello</h3>;
@@ -29,9 +53,17 @@ class App extends Component {
         }}
       >
         <Navbar>
-          <Link to="/">
-            <h2> Icon Demo App</h2>
-          </Link>
+          <FlexContents>
+            <Link to="/">
+              <HomeIcon>
+                <i className="fas fa-drumstick-bite fa-lg" style={{ marginRight: "1rem" }}></i>
+                Drumstick
+              </HomeIcon>
+            </Link>
+            <OtherIcon href="https://github.com/ChinCheChang/todogame">
+              <i className="fab fa-github fa-2x"></i>
+            </OtherIcon>
+          </FlexContents>
         </Navbar>
         <Route path="/" component={IndexPage} />
       </Flipper>
