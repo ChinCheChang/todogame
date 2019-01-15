@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components"
 
 export const BaseGridList = styled.ul`
@@ -15,3 +16,5 @@ max-width: 70rem;
 margin-left: auto;
 margin-right: auto;
 `
+
+export const Loading = () => <div>Loading</div>;
