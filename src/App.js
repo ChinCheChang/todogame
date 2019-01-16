@@ -4,6 +4,7 @@ import { Route, withRouter, Link } from 'react-router-dom';
 import { Flipper } from 'react-flip-toolkit';
 
 import IndexPage from './Pages/IndexPage';
+import CalendarPage from './Pages/CalendarPage';
 import {
   Navbar,
   FlexContents,
@@ -59,7 +60,7 @@ class App extends Component {
         </Navbar>
         <Route path="/" exact component={IndexPage} />
         <Route path="/about" component={About} />
-        <Route path="/calendar" component={Calendar} />
+        <Route path="/calendar" component={CalendarPage} />
         <Route path="/tasks" component={Tasks} />
         <Route path="/todo" component={Todo} />
       </Flipper>

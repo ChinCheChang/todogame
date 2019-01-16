@@ -12,9 +12,13 @@ export const BaseGridList = styled.ul`
 `
 
 export const Contents = styled.div`
-max-width: 70rem;
-margin-left: auto;
-margin-right: auto;
+  max-width: 70rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5vh;
 `
 
 export const Loading = () => <div>Loading</div>;
+
+export const Card = styled.div`
+`;
