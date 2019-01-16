@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Navbar = styled.header`
   padding: 0.75rem 0rem;
-  width: 100vw;
+  width: 100%;
   position: relative;
   background-color: white;
   z-index: 3;
@@ -15,6 +15,7 @@ export const FlexContents = styled.div`
   padding-left: 3rem;
   padding-right: 3rem;
   font-size: 1.5625rem;
+  box-sizing: border-box;
 `;
 
 export const HomeIcon = styled.div`
@@ -38,12 +39,12 @@ export const OtherIcons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #495057;
   > a {
     margin: 0rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #495057;
     > div {
       font-size: 1.1rem;
       margin: 0.5rem;
