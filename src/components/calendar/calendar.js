@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flipped } from 'react-flip-toolkit';
 import Days from './day/day';
 import {
   CalendarContent,
@@ -30,7 +31,11 @@ const Calendar = ({year ,month }) => {
 
   return(
     <CalendarContent>
-      <MonthTitle>{months[month - 1]}<br/>{setDate.getFullYear()}<br/></MonthTitle>
+      <MonthTitle>
+        <span>
+          {months[month - 1]}<br/>{setDate.getFullYear()}
+        </span>
+      </MonthTitle>
       {
         daysHandeler().map(( value, index ) => {
           return (

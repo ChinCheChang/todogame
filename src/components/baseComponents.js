@@ -19,6 +19,3 @@ export const Contents = styled.div`
 `
 
 export const Loading = () => <div>Loading</div>;
-
-export const Card = styled.div`
-`;

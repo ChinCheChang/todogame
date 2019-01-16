@@ -1,4 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const opacity = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
 
 export const BasicDay = styled.div`
   width: 3rem;
@@ -10,8 +20,8 @@ export const BasicDay = styled.div`
   border-style: solid;
   background-color: rgba(47.5, 43.9, 29.4, 0.3);
   margin: 0rem 0.5rem;
-  transition: 0.5s;
   cursor: pointer;
+  animation: ${opacity} 0.5s linear;
   &: hover {
     box-shadow:4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
     background-color: #495057;
