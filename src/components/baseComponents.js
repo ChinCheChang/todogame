@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export const BaseGridList = styled.ul`
   list-style: none;
@@ -11,6 +11,20 @@ export const BaseGridList = styled.ul`
   }
 `
 
+const loadingcolor = keyframes`
+  0 {
+    color: black;
+  }
+
+  50% {
+    color: gray;
+  }
+
+  100% {
+    color: black;
+  }
+`;
+
 export const Contents = styled.div`
   max-width: 70rem;
   margin-left: auto;
@@ -19,4 +33,14 @@ export const Contents = styled.div`
   padding-top: 15vh;
 `
 
-export const Loading = () => <div>Loading</div>;
+const LoadingAnimate = styled.div`
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  animation: ${loadingcolor} 2s linear infinite;
+`;
+
+export const Loading = () => <LoadingAnimate>Loading...</LoadingAnimate>;

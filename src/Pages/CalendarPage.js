@@ -73,9 +73,9 @@ class CalendarPage extends Component {
     return(
       <CalendarPageContents>
         <ControlPanel>
-          <i onClick={() => this.setState({ year: this.state.year - 1})} class="fas fa-angle-left"></i>
+          <i onClick={() => this.setState({ year: this.state.year - 1})} className="fas fa-angle-left"></i>
           <span>{this.state.year}</span>
-          <i onClick={() => this.setState({ year: this.state.year + 1})} class="fas fa-angle-right"></i>
+          <i onClick={() => this.setState({ year: this.state.year + 1})} className="fas fa-angle-right"></i>
         </ControlPanel>
         <CalendarLayout>
           {this.month(this.state.year)}

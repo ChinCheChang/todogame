@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Link } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
 import IndexPage from './Pages/IndexPage';
-import CalendarPage from './Pages/CalendarPage';
 import {
   Navbar,
   FlexContents,
@@ -10,7 +10,14 @@ import {
   OtherIcons,
   PageNav
 } from './AppStyledComponents';
-import { Contents } from './components/baseComponents';
+import { Contents, Loading } from './components/baseComponents';
+
+const CalendarPage = Loadable({
+	loader() {
+		return import('./Pages/CalendarPage');
+	},
+	loading: Loading
+});
 
 const Tasks = () => <Contents>Tasks</Contents>;
 const About = () => <Contents>About</Contents>;
@@ -51,7 +58,7 @@ class App extends Component {
           </PageNav>
         </Navbar>
         <Route path="/" exact component={IndexPage} />
-        <Route path="/about" component={About} />
+        <Route path="/about" component={Loading} />
         <Route path="/calendar" component={CalendarPage} />
         <Route path="/tasks" component={Tasks} />
         <Route path="/todo" component={Todo} />

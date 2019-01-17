@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Navbar = styled.header`
   padding: 0.75rem 0rem;
   width: 100%;
-  height: 8vh;
+  height: 5rem;
   position: fixed;
   left: 0;
   top: 0;
