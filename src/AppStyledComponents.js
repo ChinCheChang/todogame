@@ -3,7 +3,10 @@ import styled from 'styled-components';
 export const Navbar = styled.header`
   padding: 0.75rem 0rem;
   width: 100%;
-  position: relative;
+  height: 8vh;
+  position: fixed;
+  left: 0;
+  top: 0;
   background-color: white;
   z-index: 3;
   box-shadow: 0 0 8px 2px rgba( 0, 0, 0, .2 );

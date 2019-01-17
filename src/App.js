@@ -10,10 +10,11 @@ import {
   OtherIcons,
   PageNav
 } from './AppStyledComponents';
+import { Contents } from './components/baseComponents';
 
-const Tasks = () => <div>Tasks</div>;
-const About = () => <div>About</div>;
-const Todo = () => <div>Todo</div>;
+const Tasks = () => <Contents>Tasks</Contents>;
+const About = () => <Contents>About</Contents>;
+const Todo = () => <Contents>Todo</Contents>;
 
 class App extends Component {
   render() {

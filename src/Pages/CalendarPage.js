@@ -4,8 +4,17 @@ import styled from 'styled-components';
 
 const colors = ["#ff4f66", "#7971ea", "papayawhip"];
 
-const CalendarPageContent = styled.div`
-  padding: 1rem;
+const CalendarPageContents = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100vh;
+  padding-top: 15vh;
+  background-color: papayawhip;
+  box-sizing: border-box;
+`;
+
+const CalendarLayout = styled.div`
   display: grid;
   width: 55rem;
   grid-template-columns: repeat(auto-fill, 10rem);
@@ -16,11 +25,33 @@ const CalendarPageContent = styled.div`
   align-items: center;
 `;
 
+const ControlPanel = styled.div`
+  width: 16rem;
+  height: 4rem;
+  margin-right: 2rem;
+  padding: 0.5rem;
+  font-size: 3rem;
+  text-align: center;
+  color: tomato;
+  > span {
+    margin: 0 1rem;
+  };
+  > i {
+    :hover {
+      cursor: pointer;
+      color: orange;
+    }
+  }
+
+`;
+
+
 class CalendarPage extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      focused: null
+      focused: null,
+      year: 2019
     }
   }
 
@@ -40,9 +71,16 @@ class CalendarPage extends Component {
 
   render() {
     return(
-      <CalendarPageContent>
-        {this.month(2019)}
-      </CalendarPageContent>
+      <CalendarPageContents>
+        <ControlPanel>
+          <i onClick={() => this.setState({ year: this.state.year - 1})} class="fas fa-angle-left"></i>
+          <span>{this.state.year}</span>
+          <i onClick={() => this.setState({ year: this.state.year + 1})} class="fas fa-angle-right"></i>
+        </ControlPanel>
+        <CalendarLayout>
+          {this.month(this.state.year)}
+        </CalendarLayout>
+      </CalendarPageContents>
     );
   }
 }

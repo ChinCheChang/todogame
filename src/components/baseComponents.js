@@ -15,7 +15,8 @@ export const Contents = styled.div`
   max-width: 70rem;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 5vh;
+  height: 100vh;
+  padding-top: 15vh;
 `
 
 export const Loading = () => <div>Loading</div>;
