@@ -26,10 +26,8 @@ const loadingcolor = keyframes`
 `;
 
 export const Contents = styled.div`
-  max-width: 70rem;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100vh;
+  display: flex;
+  justify-content: center;
   padding-top: 15vh;
 `
 

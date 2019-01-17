@@ -8,9 +8,8 @@ const CalendarPageContents = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 100vh;
-  padding-top: 15vh;
-  background-color: papayawhip;
+  padding-top: 10rem;
+  padding-bottom: 1rem; 
   box-sizing: border-box;
 `;
 
