@@ -8,7 +8,7 @@ import {
   FlexContents,
   HomeIcon,
   OtherIcons,
-  PageNav
+  PageNav,
 } from './AppStyledComponents';
 import { Contents, Loading } from './components/baseComponents';
 
@@ -24,10 +24,33 @@ const About = () => <Contents>About</Contents>;
 const Todo = () => <Contents>Todo</Contents>;
 
 class App extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      Navbar: "expand"
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      this.setState({Navbar: "shrink"})
+    } else {
+      this.setState({Navbar: "expand"})
+    }
+  }
+
   render() {
     return (
       <div>
-        <Navbar>
+        <Navbar state={this.state.Navbar}>
           <FlexContents>
             <a href="https://github.com/ChinCheChang/todogame">
               <HomeIcon>
