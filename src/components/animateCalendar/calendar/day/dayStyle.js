@@ -19,7 +19,7 @@ export const BasicDay = styled.div`
   align-items: center;
   border-style: solid;
   background-color: rgba(47.5, 43.9, 29.4, 0.3);
-  margin: 0rem 0.5rem;
+  margin: 0rem 0.3rem;
   cursor: pointer;
   animation: ${opacity} 0.5s linear;
   &: hover {
@@ -45,7 +45,4 @@ export const EmptyDay = styled(BasicDay)`
 export const Today = styled(BasicDay)`
   border-color: rgba(248, 235, 18, 0.5);;
   background-color: rgba(248, 235, 18, 0.5);
-  &: hover {
-
-  }
 `;

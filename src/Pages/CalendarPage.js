@@ -1,92 +1,48 @@
 import React, { Component } from "react";
-import Calendar from '../components/calendar/calendar';
-import styled, { keyframes } from 'styled-components';
-import { Flipper, Flipped } from 'react-flip-toolkit';
-
-const year = 'year';
-const month = 'month';
+import AnimateCalendar from '../components/animateCalendar/animateCalendar';
+import styled from 'styled-components';
 
 const colors = ["#ff4f66", "#7971ea", "papayawhip"];
 
-const opacity = keyframes`
-  from {
-    background-color: rgba(47.5, 43.9, 29.4, 0);
-  }
-
-  to {
-    background-color: rgba(47.5, 43.9, 29.4, 0.3);
-  }
-`;
-
-const CalendarContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
 const CalendarPageContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding-top: 3rem;
-`;
-
-const YearCard = styled.div`
-  position: relative;
-  border-radius: 0.5rem;
-  height: 10rem;
-  width: 10rem;
-  background-color: tomato;
-  padding: 0.5rem;
-  color: white;
-`;
-
-const YearTitle = styled.div`
-  background-color: rgba(47.5, 43.9, 29.4, 0.3);
-  padding: 0.5rem 0.5rem;
-  border-radius: 0.3rem;
-  max-width: 10rem;
-  display: flex;
-  box-sizing: border-box;
-  animation: ${opacity} 0.5s linear;
+  padding: 1rem;
+  display: grid;
+  width: 55rem;
+  grid-template-columns: repeat(auto-fill, 10rem);
+  grid-auto-rows: 10rem;
+  grid-auto-flow: dense;
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 class CalendarPage extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      mode: year
+      focused: null
     }
   }
 
-  onChange = (mode) => {
-    this.setState({ mode: mode})
+  onChange = (date) => {
+    this.setState({ focused: date});
+  }
+
+  month = (year) => {
+    let monthArray = [];
+    for( let i=1; i<=12; i++ ){
+      monthArray.push(
+        <AnimateCalendar year={year} month={i} onChange={this.onChange} focused={this.state.focused} key={`${year}/${i}`}/>
+    );
+    }
+    return monthArray;
   }
 
   render() {
     return(
-      <Flipper
-        flipKey={this.state.mode}
-        duration={750}
-      >
-        <CalendarPageContent>
-        { this.state.mode === year ? (
-          <Flipped  flipId={2019}>
-            <YearCard onClick={() => this.onChange(month)}>
-              <YearTitle>
-                <span>January<br/>2019</span>
-              </YearTitle>
-            </YearCard>
-          </Flipped>
-        ) : (
-          <Flipped flipId={2019}>
-            <CalendarContent onClick={() => this.onChange(year)}>
-              <Calendar year={2019} month={1}/>
-            </CalendarContent>
-          </Flipped>
-        )}
-        </CalendarPageContent>
-      </Flipper>
+      <CalendarPageContent>
+        {this.month(2019)}
+      </CalendarPageContent>
     );
   }
 }

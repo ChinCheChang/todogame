@@ -1,5 +1,4 @@
 import React from 'react';
-import { Flipped } from 'react-flip-toolkit';
 import Days from './day/day';
 import {
   CalendarContent,
@@ -7,7 +6,7 @@ import {
   WeekDays
 } from './calendarStyle';
 
-const Calendar = ({year ,month }) => {
+const Calendar = ({year ,month, onChange }) => {
   var months = ['January ','February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   var week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   var setDate = new Date(year, month - 1);
@@ -36,6 +35,7 @@ const Calendar = ({year ,month }) => {
           {months[month - 1]}<br/>{setDate.getFullYear()}
         </span>
       </MonthTitle>
+      <i className="fas fa-compress" onClick={() => {onChange(null)}}></i>
       {
         daysHandeler().map(( value, index ) => {
           return (
