@@ -11,6 +11,7 @@ import {
   PageNav,
 } from './AppStyledComponents';
 import { Contents, Loading } from './components/baseComponents';
+import TasksPage from './Pages/TasksPage';
 
 const CalendarPage = Loadable({
 	loader() {
@@ -19,8 +20,6 @@ const CalendarPage = Loadable({
 	loading: Loading
 });
 
-const Tasks = () => <Contents>Tasks</Contents>;
-const About = () => <Contents>About</Contents>;
 const Todo = () => <Contents>Todo</Contents>;
 
 class App extends Component {
@@ -40,7 +39,7 @@ class App extends Component {
   }
 
   handleScroll = () => {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
       this.setState({Navbar: "shrink"})
     } else {
       this.setState({Navbar: "expand"})
@@ -83,7 +82,7 @@ class App extends Component {
         <Route path="/" exact component={IndexPage} />
         <Route path="/about" component={Loading} />
         <Route path="/calendar" component={CalendarPage} />
-        <Route path="/tasks" component={Tasks} />
+        <Route path="/tasks" component={TasksPage} />
         <Route path="/todo" component={Todo} />
       </div>
     );

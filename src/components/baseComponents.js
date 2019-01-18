@@ -28,7 +28,11 @@ const loadingcolor = keyframes`
 export const Contents = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 15vh;
+  flex-wrap: wrap;
+  padding-top: 7rem;
+  padding-bottom: 1rem;
+  margin 0 auto;
+  max-width: 95.36743rem;
 `
 
 const LoadingAnimate = styled.div`

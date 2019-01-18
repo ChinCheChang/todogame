@@ -1,10 +1,9 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-// ${props => (props.state === "shrink" ? '-10rem' : '0')};
 export const Navbar = styled.header`
-  padding: 0.75rem 0rem;
+  padding: 0.75rem 1rem;
   width: 100%;
-  height: 5rem;
+  height: 4.5rem;
   position: fixed;
   left: 0;
   top: 0;
@@ -18,10 +17,10 @@ export const Navbar = styled.header`
 export const FlexContents = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  width: 95%;
+  margin 0 auto;
+  max-width: 95.36743rem;
   font-size: 1.5625rem;
-  box-sizing: border-box;
 `;
 
 export const HomeIcon = styled.div`
@@ -61,11 +60,12 @@ export const OtherIcons = styled.div`
 export const PageNav = styled.div`
   display: flex;
   justify-content: flex-start;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  width: 95%;
+  margin 0 auto;
+  max-width: 95.36743rem;
   > a {
     color: #495057;
-    margin-top: 1vw;
+    margin-top: 0.7rem;
     padding-right: 0.3rem;
     border-right: 2px solid #495057;
   }

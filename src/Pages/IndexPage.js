@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Contents } from '../components/baseComponents';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const Background = styled.div`
-  padding: 0.5rem;
-  background-color: tomato;
   height: auto;
+  box-shadow:4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
 `;
 
 class IndexPage extends Component {

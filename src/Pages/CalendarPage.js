@@ -1,17 +1,7 @@
 import React, { Component } from "react";
 import AnimateCalendar from '../components/animateCalendar/animateCalendar';
 import styled from 'styled-components';
-
-const colors = ["#ff4f66", "#7971ea", "papayawhip"];
-
-const CalendarPageContents = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 10rem;
-  padding-bottom: 1rem; 
-  box-sizing: border-box;
-`;
+import { Contents } from '../components/baseComponents';
 
 const CalendarLayout = styled.div`
   display: grid;
@@ -70,7 +60,7 @@ class CalendarPage extends Component {
 
   render() {
     return(
-      <CalendarPageContents>
+      <Contents>
         <ControlPanel>
           <i onClick={() => this.setState({ year: this.state.year - 1})} className="fas fa-angle-left"></i>
           <span>{this.state.year}</span>
@@ -79,7 +69,7 @@ class CalendarPage extends Component {
         <CalendarLayout>
           {this.month(this.state.year)}
         </CalendarLayout>
-      </CalendarPageContents>
+      </Contents>
     );
   }
 }
