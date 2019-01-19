@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Navbar = styled.header`
   padding: 0.75rem 1rem;
   width: 100%;
-  height: 4.5rem;
+  height: 6rem;
   position: fixed;
   left: 0;
   top: 0;
@@ -12,6 +12,7 @@ export const Navbar = styled.header`
   box-shadow: 0 0 8px 2px rgba( 0, 0, 0, .2 );
   transform: ${props => (props.state === "shrink" ? 'translateY(-100%)' : 'translateY(0)')};
   transition-duration: 0.5s;
+  box-sizing: border-box;
 `;
 
 export const FlexContents = styled.div`

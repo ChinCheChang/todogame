@@ -12,8 +12,9 @@ class IndexPage extends Component {
     return(
       <Contents>
         <Background>
-          <a href="https://gyazo.com/ecd6f27a436ac0809a354e13d2096557"><img src="https://i.gyazo.com/ecd6f27a436ac0809a354e13d2096557.gif" alt="Image from Gyazo" width="800"/></a>
+          <img src="https://i.gyazo.com/ecd6f27a436ac0809a354e13d2096557.gif" alt="Image from Gyazo" width='500'/>          
         </Background>
+        using vw to control the width of image
       </Contents>
     );
   }

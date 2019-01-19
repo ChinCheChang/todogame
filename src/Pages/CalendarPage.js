@@ -18,7 +18,7 @@ const ControlPanel = styled.div`
   width: 16rem;
   height: 4rem;
   margin-right: 2rem;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   font-size: 3rem;
   text-align: center;
   color: tomato;

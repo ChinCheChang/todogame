@@ -29,7 +29,7 @@ export const Contents = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 7rem;
+  padding-top: 6rem;
   padding-bottom: 1rem;
   margin 0 auto;
   max-width: 95.36743rem;
