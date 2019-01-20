@@ -1,89 +1,44 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
 import { Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { Contents } from '../components/baseComponents';
+import { Contents, SmallCard, SmallCardTitle, SmallCardContent, ContentLayout } from '../components/baseComponents';
+import { Sidebar, AddPlan, TasksContents, AddTask } from '../components/taskPageStyle';
 import { result } from '../testDate';
+import { addTask } from '../actions';
 
-const Sidebar = styled.div`
-  width: 20%;
-  max-width: 13rem;
-  padding: 0.5rem;
-  display: block;
-  background-color: #f1f3f5;
-  > a {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 2rem;
-    color: #495057;
-    padding: 0.3rem 1rem;
-    border-radius: 2px;
-    box-sizing: border-box;
-    font-size: 1.2rem;
-    :hover {
-      cursor: pointer;
-      background-color: #adb5bd;
-      color: #f1f3f5;
-    }
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks
   }
-  > span{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2rem;
-    color: papayawhip;
-    font-size: 1.5rem;
-    padding: 0.5rem 0 0.5rem 0;
-    border-radius: 0.3rem;
-    background-color: palevioletred;
-    margin-bottom: 0.5rem;
-  }
-`;
+}
 
-const AddPlan = styled(Link)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2rem;
-  border-radius: 0.5rem;
-  color: #495057;
-  font-size: 1.5rem;
-  :hover {
-    cursor: pointer;
-    color: #f1f3f5;
-    background-color: #adb5bd;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddTask: (task) => dispatch(addTask(task))
   }
-`;
-
-const TasksContents = styled.div`
-  width: 80%;
-  height: calc(100vh - 7rem);
-`;
+}
 
 class TasksPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userInfo: result,
-      focused: 1
+      focused: 0
     }
   }
 
   render() {
-    const { focused } = this.state;
-    const { articles, users } = this.state.userInfo.entities;
-    console.log();
+    const { focused, store } = this.state;
+    const { plans, users, tasks } = this.state.userInfo.entities;
 
     return (
       <Contents>
         <Sidebar>
           <span>Plans</span>
           {
-            articles.map(
+            plans.map(
               (value, index) => (
                 <Link
                   to={`${this.props.match.url}/${value.title}`}
@@ -99,11 +54,34 @@ class TasksPage extends Component {
           </div>
         </Sidebar>
         <TasksContents>
-          {users.filter((value) => value.id === articles[focused].author)[0].name}
+          <ContentLayout>
+            {plans[focused].tasks.map((taskId, index) => {
+              return (
+                <SmallCard key={taskId}>
+                  <SmallCardTitle>
+                    {tasks.filter((value) => value.id === taskId)[0].title}
+                  </SmallCardTitle>
+                  <SmallCardContent>
+                    {tasks.filter((value) => value.id === taskId)[0].content}
+                  </SmallCardContent>
+                </SmallCard>
+              );
+            })}
+            <AddTask onClick={() => this.props.onAddTask({
+              id: 6,
+              title: 'walking dog6',
+              content: 'walking dog in Daan park',
+              subNodes: [ ],
+              preNode: [ ],
+              articles: [ 1 ]
+            })}>
+              <span>+</span>
+            </AddTask>
+          </ContentLayout>
         </TasksContents>
       </Contents>
     );
   }
 }
 
-export default TasksPage;
+export default connect(mapStateToProps, mapDispatchToProps)(TasksPage);

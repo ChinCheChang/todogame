@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import AnimateCalendar from '../components/animateCalendar/animateCalendar';
 import styled from 'styled-components';
-import { Contents } from '../components/baseComponents';
+import { Contents, ContentLayout } from '../components/baseComponents';
 
-const CalendarLayout = styled.div`
-  display: grid;
-  width: 55rem;
-  grid-template-columns: repeat(auto-fill, 10rem);
-  grid-auto-rows: 10rem;
-  grid-auto-flow: dense;
-  grid-gap: 1rem;
-  justify-content: center;
-  align-items: center;
-`;
+
 
 const ControlPanel = styled.div`
   width: 16rem;
@@ -66,9 +57,9 @@ class CalendarPage extends Component {
           <span>{this.state.year}</span>
           <i onClick={() => this.setState({ year: this.state.year + 1})} className="fas fa-angle-right"></i>
         </ControlPanel>
-        <CalendarLayout>
+        <ContentLayout>
           {this.month(this.state.year)}
-        </CalendarLayout>
+        </ContentLayout>
       </Contents>
     );
   }

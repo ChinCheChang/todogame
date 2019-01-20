@@ -1,17 +1,19 @@
 export const result = {
   result: [1, 2],
   entities: {
-    articles: [
+    plans: [
       {
         id: 1,
-        title: 'Some Article',
+        title: 'Plan A',
         author: 2,
+        description: '',
         tasks: [ 1, 5 ]
       },
       {
         id: 2,
-        title: 'Other Article',
+        title: 'Plan B',
         author: 1,
+        description: '',
         tasks: [ 2, 4 ]
       }
     ],
