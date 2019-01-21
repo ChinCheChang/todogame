@@ -57,7 +57,7 @@ class App extends Component {
                 Drumstick
                 <div>Beta</div>
               </HomeIcon>
-            </a>
+            </a>            
             <OtherIcons>
               <a href="#">
                 <i className="far fa-bell fa-sm"></i>

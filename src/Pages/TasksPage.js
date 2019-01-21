@@ -1,22 +1,24 @@
 import React, {Component} from 'react';
-import styled from 'styled-components'
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { Contents, SmallCard, SmallCardTitle, SmallCardContent, ContentLayout } from '../components/baseComponents';
-import { Sidebar, AddPlan, TasksContents, AddTask } from '../components/taskPageStyle';
-import { result } from '../testDate';
-import { addTask } from '../actions';
+import { Contents, SmallCard, SmallCardTitle, SmallCardContent, ContentLayout, CardContent } from '../components/baseComponents';
+import { Sidebar, AddPlan, TasksContents, AddTask, InputTitle } from '../components/taskPageStyle';
+import { createTask, deleteTask, createPlan, deletePlan } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks
+    tasks: state.tasksReducer.tasks,
+    plans: state.plansReducer.plans
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (task) => dispatch(addTask(task))
+    onCreateTask: (task) => dispatch(createTask(task)),
+    onDeleteTask: (taskId) => dispatch(deleteTask(taskId)),
+    onCreatePlan: (plan) => dispatch(createTask(plan)),
+    onDeletePlan: (planId) => dispatch(deleteTask(planId))
   }
 }
 
@@ -24,14 +26,41 @@ class TasksPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: result,
-      focused: 0
+      focused: 1,
+      focusedTaskTitle: '',
+      focusedTaskContent: ''
+    }
+  }
+
+  onTaskTitleChange = (e) => {
+    this.setState({
+      focusedTaskTitle: e.target.value
+    })
+  }
+
+  onTaskContentChange = (e) => {
+    this.setState({
+      focusedTaskContent: e.target.value
+    })
+  }
+
+  onAddTaskSubmit = () => {
+    const { tasks, onCreateTask } = this.props;
+    if (this.state.focusedTaskTitle) {
+      onCreateTask({
+        id: tasks[tasks.length - 1].id + 1,
+        title: this.state.focusedTaskTitle,
+        content: this.state.focusedTaskContent,
+        article: [ this.state.focused ]
+      })
+    } else {
+      console.log("Title is empty")
     }
   }
 
   render() {
-    const { focused, store } = this.state;
-    const { plans, users, tasks } = this.state.userInfo.entities;
+    const { focused, focusedTaskTitle, focusedTaskContent } = this.state;
+    const { tasks, plans, match } = this.props;
 
     return (
       <Contents>
@@ -41,9 +70,9 @@ class TasksPage extends Component {
             plans.map(
               (value, index) => (
                 <Link
-                  to={`${this.props.match.url}/${value.title}`}
+                  to={`${ match.url}/${value.title}`}
                   key={value.title}
-                  onClick={() => this.setState({focused: `${index}`})}
+                  onClick={() => this.setState({focused: value.id})}
                 >
                   {value.title}
                 </Link>)
@@ -55,7 +84,7 @@ class TasksPage extends Component {
         </Sidebar>
         <TasksContents>
           <ContentLayout>
-            {plans[focused].tasks.map((taskId, index) => {
+            {plans.find(value => value.id === focused).tasks.map((taskId, index) => {
               return (
                 <SmallCard key={taskId}>
                   <SmallCardTitle>
@@ -67,16 +96,26 @@ class TasksPage extends Component {
                 </SmallCard>
               );
             })}
-            <AddTask onClick={() => this.props.onAddTask({
-              id: 6,
-              title: 'walking dog6',
-              content: 'walking dog in Daan park',
-              subNodes: [ ],
-              preNode: [ ],
-              articles: [ 1 ]
-            })}>
+            <AddTask onClick={() => this.props.onDeleteTask(4)}>              
               <span>+</span>
             </AddTask>
+            <CardContent>
+              <InputTitle
+                type="text"
+                value={focusedTaskTitle}
+                onChange={this.onTaskTitleChange}
+                placeholder='I have an idea...'/>
+              {/* <InputTitle
+                type="text"
+                value={focusedTaskContent}
+                onChange={this.onTaskContentChange}
+                placeholder='detail'/> */}
+              <input
+                type='submit'
+                onClick={this.onAddTaskSubmit}
+                value='+'
+              />
+            </CardContent>
           </ContentLayout>
         </TasksContents>
       </Contents>

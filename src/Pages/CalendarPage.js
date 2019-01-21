@@ -22,7 +22,6 @@ const ControlPanel = styled.div`
       color: orange;
     }
   }
-
 `;
 
 
