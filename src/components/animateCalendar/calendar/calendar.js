@@ -1,10 +1,12 @@
 import React from 'react';
 import Days from './day/day';
 import {
-  CalendarContent,
   MonthTitle,
   WeekDays
 } from './calendarStyle';
+import {
+  CardContent
+} from '../../baseComponents';
 
 const Calendar = ({year ,month, onChange }) => {
   var months = ['January ','February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -29,7 +31,7 @@ const Calendar = ({year ,month, onChange }) => {
   }
 
   return(
-    <CalendarContent>
+    <CardContent>
       <MonthTitle>
         <span>
           {months[month - 1]}<br/>{setDate.getFullYear()}
@@ -49,7 +51,7 @@ const Calendar = ({year ,month, onChange }) => {
           );
         })
       }
-    </CalendarContent>
+    </CardContent>
   );
 }
 

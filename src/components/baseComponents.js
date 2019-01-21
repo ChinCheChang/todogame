@@ -95,6 +95,31 @@ export const SmallCardContent = styled.div`
     }
 `;
 
+export const CardContent = styled.div`
+  position: relative;
+  width: 30rem;
+  padding: 0.5rem;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: tomato;
+  :hover {
+    box-shadow:4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
+  }
+  > i {
+    position: absolute;
+    right: 0.1rem;
+    top: 0.5rem;
+    font-size: 1.5rem;
+    padding 0.5rem;
+    &: hover {
+      color: #495057;
+    }
+  }
+`;
+
 //Contents Layout
 export const ContentLayout = styled.div`
   display: grid;
@@ -104,7 +129,6 @@ export const ContentLayout = styled.div`
   grid-auto-flow: dense;
   grid-gap: 1rem;
   justify-content: center;
-  align-items: center;
 `;
 
 //Loading

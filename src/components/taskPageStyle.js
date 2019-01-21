@@ -77,3 +77,11 @@ export const AddTask = styled(SmallCard)`
     cursor: pointer;
   }
 `;
+
+export const InputTitle = styled.input`
+  width: 80%;
+  max-height: 3rem;
+  font-size: 2rem;
+  margin-top: 1rem;
+  background-color: papayawhip
+`;
