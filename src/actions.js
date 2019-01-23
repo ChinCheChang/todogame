@@ -2,31 +2,28 @@ import {
   CREATE_TASK,
   DELETE_TASK,
   UPDATE_TASK,
-  CREATE_PLAN,
-  DELETE_PLAN
+  TOGGLE_TASK
 } from './constants'
 
-export const createTask = (taskObj) => ({
+let nextTodoId = 0;
+
+export const createTask = (text) => ({
   type: CREATE_TASK,
-  payload: taskObj
+  id: nextTodoId++,
+  text
 });
 
-export const deleteTask = (taskId) => ({
-  type: DELETE_TASK,
-  payload: taskId
-});
-
-export const updateTask = (taskObj) => ({
-  type: UPDATE_TASK,
-  payload: taskObj
+export const toggleTask = (id) => ({
+  type: TOGGLE_TASK,
+  id
 })
 
-export const createPlan = (planObj) => ({
-  type: CREATE_PLAN,
-  payload: planObj
-});
-
-export const deletePlan = (planId) => ({
-  type: DELETE_PLAN,
-  payload: planId
-});
+// export const deleteTask = (taskId) => ({
+//   type: DELETE_TASK,
+//   payload: taskId
+// });
+//
+// export const updateTask = (taskObj) => ({
+//   type: UPDATE_TASK,
+//   payload: taskObj
+// })

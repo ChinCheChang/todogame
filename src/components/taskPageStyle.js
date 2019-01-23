@@ -1,87 +1,74 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { SmallCard } from './baseComponents';
-
-export const Sidebar = styled.div`
-  width: 20%;
-  max-width: 13rem;
-  padding: 0.5rem;
-  display: block;
-  background-color: #f1f3f5;
-  > a {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 2rem;
-    color: #495057;
-    padding: 0.3rem 1rem;
-    border-radius: 2px;
-    box-sizing: border-box;
-    font-size: 1.2rem;
-    :hover {
-      cursor: pointer;
-      background-color: #adb5bd;
-      color: #f1f3f5;
-    }
-  }
-  > span{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2rem;
-    color: papayawhip;
-    font-size: 1.5rem;
-    padding: 0.5rem 0 0.5rem 0;
-    border-radius: 0.3rem;
-    background-color: palevioletred;
-    margin-bottom: 0.5rem;
-  }
-`;
-
-export const AddPlan = styled(Link)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2rem;
-  border-radius: 0.5rem;
-  color: #495057;
-  font-size: 1.5rem;
-  :hover {
-    cursor: pointer;
-    color: #f1f3f5;
-    background-color: #adb5bd;
-  }
-`;
 
 export const TasksContents = styled.div`
-  width: 80%;
+  display: grid;
+  width: 100%;
   height: calc(100vh - 7rem);
-  padding-top: 1rem;
-  display: flex;
+  grid-template-columns: repeat(auto-fill, 12rem);
+  grid-auto-rows: 7rem;
+  grid-auto-flow: dense;
+  grid-gap: 1rem;
   justify-content: center;
+  padding-top: 8rem;
 `;
 
-export const AddTask = styled(SmallCard)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  height: 100%;
-  background-color: inherit;
+export const AddTask = styled.div`
+  position: relative;
   border: 2px solid tomato;
+  grid-column: span 1;
+  grid-row: span 1;
+  border-radius: 0.5rem;
   color: tomato;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  display: block;
+  word-wrap: break-word;
   :hover {
+    box-shadow:4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
     cursor: pointer;
+  }
+  > span {
+    color: #495057;
+    text-decoration: ${props => props.completed ? "line-through" : ""};
   }
 `;
 
-export const InputTitle = styled.input`
-  width: 80%;
-  max-height: 3rem;
-  font-size: 2rem;
-  margin-top: 1rem;
-  background-color: papayawhip
+export const IconContainer = styled.div`
+  position: absolute;
+  padding: 0 0.3rem;
+  right: 0;
+  bottom: 0;
+  font-size: 1.5rem;
+  > i {
+    :hover {
+      color: #495057;
+    }
+  }
+`;
+
+export const InputTitle = styled.textarea`
+  width: 100%;
+  height: 5rem;
+  max-height: 100%;
+  min-height: 1rem;
+  overflow: auto;
+  font-size: 1.2rem;
+  border: none;
+  padding: none;
+  background-color: inherit;
+`;
+
+export const AddButton = styled.div`
+  position: absolute;
+  left: 0rem;
+  bottom: 0rem;
+  color: #f8f9fa;
+  font-size: 1rem;
+  padding: 0.3rem;
+  box-sizing: border-box;
+  border-radius: 0rem 0.3rem 0 0;
+  background-color: tomato;
+  :hover {
+    cursor: pointer;
+  }
 `;

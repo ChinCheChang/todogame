@@ -65,8 +65,10 @@ export const SmallCardTitle = styled.div`
   background-color: rgba(47.5, 43.9, 29.4, 0.3);
   padding: 0.5rem 0.5rem;
   border-radius: 0.3rem;
-  display: flex;
+  overflow: hidden;
+  display: block;
   box-sizing: border-box;
+  word-wrap: break-word;
   animation: ${opacity} 0.5s linear;
   > i {
     position: absolute;
