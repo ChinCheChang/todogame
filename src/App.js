@@ -11,7 +11,6 @@ import {
   PageNav,
 } from './AppStyledComponents';
 import { Contents, Loading } from './components/baseComponents';
-import TasksPage from './Pages/TasksPage';
 
 const CalendarPage = Loadable({
 	loader() {
@@ -20,7 +19,12 @@ const CalendarPage = Loadable({
 	loading: Loading
 });
 
-const Todo = () => <Contents>Todo</Contents>;
+const TasksPage = Loadable({
+	loader() {
+		return import('./Pages/TasksPage');
+	},
+	loading: Loading
+});
 
 class App extends Component {
   constructor (props) {
@@ -53,11 +57,11 @@ class App extends Component {
           <FlexContents>
             <a href="https://github.com/ChinCheChang/todogame">
               <HomeIcon>
-                <i className="fas fa-drumstick-bite fa-sm" style={{ marginRight: "1rem" }}></i>
-                Drumstick
+                <i className="fas fa-carrot fa-sm" style={{ marginRight: "1rem" }}></i>
+                Carrot
                 <div>Beta</div>
               </HomeIcon>
-            </a>            
+            </a>
             <OtherIcons>
               <a href="#">
                 <i className="far fa-bell fa-sm"></i>
@@ -75,7 +79,6 @@ class App extends Component {
             <Link to="/">Home</Link>
             <Link to="/calendar">Calendar</Link>
             <Link to="/tasks">Tasks</Link>
-            <Link to="/todo">Todo</Link>
             <Link to="/about">About</Link>
           </PageNav>
         </Navbar>
@@ -83,7 +86,6 @@ class App extends Component {
         <Route path="/about" component={Loading} />
         <Route path="/calendar" component={CalendarPage} />
         <Route path="/tasks" component={TasksPage} />
-        <Route path="/todo" component={Todo} />
       </div>
     );
   }

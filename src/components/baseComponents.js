@@ -126,6 +126,7 @@ export const CardContent = styled.div`
 export const ContentLayout = styled.div`
   display: grid;
   width: 55rem;
+  margin-top: 1rem;
   grid-template-columns: repeat(auto-fill, 10rem);
   grid-auto-rows: 10rem;
   grid-auto-flow: dense;
