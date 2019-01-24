@@ -18,12 +18,13 @@ export const toggleTask = (id) => ({
   id
 })
 
-// export const deleteTask = (taskId) => ({
-//   type: DELETE_TASK,
-//   payload: taskId
-// });
-//
-// export const updateTask = (taskObj) => ({
-//   type: UPDATE_TASK,
-//   payload: taskObj
-// })
+export const deleteTask = (id) => ({
+  type: DELETE_TASK,
+  id
+});
+
+export const updateTask = (id, text) => ({
+  type: UPDATE_TASK,
+  id,
+  text
+})

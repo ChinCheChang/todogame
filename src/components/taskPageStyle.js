@@ -5,7 +5,7 @@ export const TasksContents = styled.div`
   width: 100%;
   height: calc(100vh - 7rem);
   grid-template-columns: repeat(auto-fill, 12rem);
-  grid-auto-rows: 7rem;
+  grid-auto-rows: 8rem;
   grid-auto-flow: dense;
   grid-gap: 1rem;
   justify-content: center;
@@ -14,12 +14,12 @@ export const TasksContents = styled.div`
 
 export const AddTask = styled.div`
   position: relative;
-  border: 2px solid tomato;
-  grid-column: span 1;
-  grid-row: span 1;
+  border: 2px solid ${props => props.completed ? "gray" : "tomato"};
+  grid-column: ${props => (props.focused === props.id ? "span 2" : "span 1")};
+  grid-row: ${props => (props.focused === props.id ? "span 2" : "span 1")};
   border-radius: 0.5rem;
   color: tomato;
-  padding: 0.5rem;
+  padding: 0.75rem;
   box-sizing: border-box;
   display: block;
   word-wrap: break-word;
@@ -33,22 +33,34 @@ export const AddTask = styled.div`
   }
 `;
 
+
 export const IconContainer = styled.div`
   position: absolute;
-  padding: 0 0.3rem;
+  width: 100%;
+  background-color: ${props => props.completed ? "gray" : "tomato"};
+  padding: 0.3rem 0.3rem;
+  box-sizing: border-box;
+  border-radius: 0 0 0.3rem 0.3rem;
+  display: flex;
+  justify-content: flex-end;
   right: 0;
   bottom: 0;
-  font-size: 1.5rem;
+  color: #f8f9fa;
+  font-size: 1.2rem;
   > i {
+    width: 1.5rem;
+    display: flex;
+    justify-content: center;
+    margin-left: 0.25rem;
     :hover {
-      color: #495057;
+      color: orange;
     }
   }
 `;
 
 export const InputTitle = styled.textarea`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   max-height: 100%;
   min-height: 1rem;
   overflow: auto;
