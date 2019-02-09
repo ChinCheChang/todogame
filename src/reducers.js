@@ -2,10 +2,10 @@ import {
   CREATE_TASK,
   DELETE_TASK,
   UPDATE_TASK,
-  TOGGLE_TASK
+  TOGGLE_TASK,
+  UPDATE_USER,
+  LOG_OUT_USER
 } from './constants';
-
-import { result } from './testDate';
 
 export const tasks = (state = [], action = {}) => {
   switch (action.type) {
@@ -31,4 +31,16 @@ export const tasks = (state = [], action = {}) => {
     default:
       return state;
   }
+}
+
+export const user = (state = {}, action = {}) => {
+  switch (action.type) {
+    case UPDATE_USER:
+      return action.user;
+    case LOG_OUT_USER:
+      return {};
+    default:
+      return state;
+  }
+
 }

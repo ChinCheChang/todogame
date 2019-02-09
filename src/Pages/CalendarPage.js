@@ -3,8 +3,6 @@ import AnimateCalendar from '../components/animateCalendar/animateCalendar';
 import styled from 'styled-components';
 import { Contents, ContentLayout } from '../components/baseComponents';
 
-
-
 const ControlPanel = styled.div`
   width: 16rem;
   height: 4rem;

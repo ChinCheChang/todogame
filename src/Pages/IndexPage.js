@@ -25,12 +25,12 @@ class IndexPage extends Component {
     return(
       <Contents>
         <Background>
-          <img src="https://i.gyazo.com/7c6174ab80d49425ad8a4c402ee91b94.gif" alt="Image from Gyazo" width="500"/>
+          <img src="https://i.gyazo.com/7c6174ab80d49425ad8a4c402ee91b94.gif" alt="calendar" width="500"/>
           <h1>Calendar</h1>
         </Background>
         <Background>
           <h1>Tasks</h1>
-          <img src="https://i.gyazo.com/600e82fb2d4eb0d1d8c1ec1cc43b0c46.gif" alt="Image from Gyazo" width="500"/>
+          <img src="https://i.gyazo.com/600e82fb2d4eb0d1d8c1ec1cc43b0c46.gif" alt="Task" width="500"/>
         </Background>
       </Contents>
     );

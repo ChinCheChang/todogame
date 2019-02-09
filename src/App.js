@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Link } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import { connect } from 'react-redux';
 
 import IndexPage from './Pages/IndexPage';
 import {
@@ -10,7 +11,10 @@ import {
   OtherIcons,
   PageNav,
 } from './AppStyledComponents';
-import { Contents, Loading } from './components/baseComponents';
+import SignIn from './components/frontComponent/SignIn';
+import Register from './components/frontComponent/Register';
+import { Loading } from './components/baseComponents';
+import { updateUser, logOutUser } from './actions';
 
 const CalendarPage = Loadable({
 	loader() {
@@ -26,11 +30,25 @@ const TasksPage = Loadable({
 	loading: Loading
 });
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadUser: (user) => dispatch(updateUser(user)),
+    logOutUser: () => dispatch(logOutUser())
+  }
+}
+
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      Navbar: "expand"
+      Navbar: "expand",
+      route: ""
     }
   }
 
@@ -50,9 +68,27 @@ class App extends Component {
     }
   }
 
+  onRouteChange = (route) => {
+    this.setState({route: route});
+  }
+
+  route = () => {
+    if (this.state.route === "SignIn"){
+      return (
+        <SignIn onRouteChange={this.onRouteChange} loadUser={this.props.loadUser}/>
+      );
+    } else if (this.state.route === "Register") {
+      return (
+        <Register onRouteChange={this.onRouteChange} loadUser={this.props.loadUser}/>
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
       <div>
+        {this.route()}
         <Navbar state={this.state.Navbar}>
           <FlexContents>
             <a href="https://github.com/ChinCheChang/todogame">
@@ -63,16 +99,22 @@ class App extends Component {
               </HomeIcon>
             </a>
             <OtherIcons>
-              <a href="#">
+              <div href="#">
                 <i className="far fa-bell fa-sm"></i>
-              </a>
-              <a href="#">
-                <div>Sign In</div>
-                <i className="fas fa-sign-in-alt fa-sm"></i>
-              </a>
-              {/* <a href="https://github.com/ChinCheChang/todogame">
-                <i className="fas fa-bars fa-sm"></i>
-              </a> */}
+              </div>
+              {
+                this.props.user.id ? (
+                  <div>
+                    <div>{this.props.user.name}</div>
+                    <div onClick={() => this.props.logOutUser()}>Logout</div>
+                  </div>
+                ) : (
+                  <div onClick={() => this.onRouteChange("SignIn")} href="#">
+                    <div>Sign In</div>
+                    <i className="fas fa-sign-in-alt fa-sm"></i>
+                  </div>
+                )
+              }
             </OtherIcons>
           </FlexContents>
           <PageNav>
@@ -91,4 +133,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

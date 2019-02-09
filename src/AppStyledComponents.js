@@ -45,12 +45,15 @@ export const OtherIcons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  > a {
+  > div {
     margin: 0rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #495057;
+    :hover {
+      cursor: pointer;
+    }
     > div {
       font-size: 1.1rem;
       margin: 0.5rem;
