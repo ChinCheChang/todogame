@@ -46,7 +46,7 @@ class SignIn extends Component {
           <SignContent>Email :</SignContent>
           <SignInput onChange={(e) => this.setState({email: e.target.value})} />
           <SignContent>Password :</SignContent>
-          <SignInput onChange={(e) => this.setState({password: e.target.value})}/>
+          <SignInput type="password" onChange={(e) => this.setState({password: e.target.value})}/>
           <SubmitButton onClick={() => this.onSubmitSignIn()}>Sign In</SubmitButton>
           <RigisterButton onClick={() => this.props.onRouteChange("Register")}>Register</RigisterButton>
         </SignComponent>

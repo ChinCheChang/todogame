@@ -57,20 +57,37 @@ class TasksPage extends Component {
       })
         .then(res => res.json())
         .then(task => {
-          console.log(task);
+          if( task === 'add task error' ) throw(task);
           onCreateTask(this.state.createTaskTitle, user.id, task.id)
           this.setState({
             createTaskTitle: ''
-          })
-          if( task === 'add task error' ) throw(task);
+          })          
         })
         .catch(err => console.log(err))
     }
   }
 
+  UpdateTask = (taskid, request, type) => {
+    fetch('http://localhost:3001/tasks', {
+      method: 'put',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({
+        taskid: taskid,
+        request: request
+      })
+    })
+      .then(res => res.json())
+      .then(task => {
+        if( task === 'update error' ) throw(task);
+      })
+      .catch(err => console.log(err))
+    if(type === 'updateTitle') {this.props.onUpdateTask(taskid, request.title)}
+    else {this.props.onToggleTask(taskid)}
+  }
+
   render() {
     const { createTaskTitle, focused, focusedContents } = this.state;
-    const { tasks, onToggleTask, onDeleteTask, onUpdateTask } = this.props;
+    const { tasks, onDeleteTask } = this.props;
     return (
       <TasksContents>
         {tasks.map((task, index) => {
@@ -89,11 +106,11 @@ class TasksPage extends Component {
                 )
               }
               <IconContainer completed={task.completed}>
-                <i onClick={() => {onToggleTask(task.id)}} className="far fa-check-circle"></i>
+                <i onClick={() => {this.UpdateTask(task.id ,{completed: !task.completed}, 'toggleTask')}} className="far fa-check-circle"></i>
                 <i onClick={() => {onDeleteTask(task.id)}} className="far fa-trash-alt"></i>
                 {
                   focused === task.id ? (
-                    <i onClick={() => onUpdateTask(task.id ,focusedContents)} className="fas fa-plus"></i>
+                    <i onClick={() => this.UpdateTask(task.id ,{title: focusedContents}, 'updateTitle')} className="fas fa-plus"></i>
                   ) : (
                     null
                   )
