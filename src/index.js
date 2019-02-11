@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { tasks, user } from './reducers';
 
 const rootReducers = combineReducers({tasks, user});
-const store = createStore(rootReducers));
+const store = createStore(rootReducers);
 
 ReactDOM.render(
   <Provider store={store}>
