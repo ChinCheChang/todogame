@@ -4,15 +4,22 @@ import {
   UPDATE_TASK,
   TOGGLE_TASK,
   UPDATE_USER,
-  LOG_OUT_USER
+  LOG_OUT_USER,
+  GET_TASK
 } from './constants'
 
-let nextTodoId = 0;
+let nextTodoId = -1;
 
-export const createTask = (text) => ({
+export const getTask = (tasks) => ({
+  type: GET_TASK,
+  tasks
+})
+
+export const createTask = (title, authorid = -1, id = nextTodoId--) => ({
   type: CREATE_TASK,
-  id: nextTodoId++,
-  text
+  id,
+  title,
+  authorid
 });
 
 export const toggleTask = (id) => ({
@@ -25,10 +32,10 @@ export const deleteTask = (id) => ({
   id
 });
 
-export const updateTask = (id, text) => ({
+export const updateTask = (id, title) => ({
   type: UPDATE_TASK,
   id,
-  text
+  title
 })
 
 export const updateUser = (user) => ({

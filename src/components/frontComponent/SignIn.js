@@ -32,7 +32,8 @@ class SignIn extends Component {
       .then(data => {
         if (data){
           this.props.onRouteChange("");
-          this.props.loadUser(data);
+          this.props.loadUser(data.user);
+          this.props.getTask(data.tasks);
         }
       })
   };

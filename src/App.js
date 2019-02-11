@@ -14,7 +14,7 @@ import {
 import SignIn from './components/frontComponent/SignIn';
 import Register from './components/frontComponent/Register';
 import { Loading } from './components/baseComponents';
-import { updateUser, logOutUser } from './actions';
+import { updateUser, logOutUser, getTask } from './actions';
 
 const CalendarPage = Loadable({
 	loader() {
@@ -39,7 +39,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadUser: (user) => dispatch(updateUser(user)),
-    logOutUser: () => dispatch(logOutUser())
+    logOutUser: () => dispatch(logOutUser()),
+    getTask: (tasks) => dispatch(getTask(tasks))
   }
 }
 
@@ -75,7 +76,7 @@ class App extends Component {
   route = () => {
     if (this.state.route === "SignIn"){
       return (
-        <SignIn onRouteChange={this.onRouteChange} loadUser={this.props.loadUser}/>
+        <SignIn onRouteChange={this.onRouteChange} loadUser={this.props.loadUser} getTask={this.props.getTask}/>
       );
     } else if (this.state.route === "Register") {
       return (

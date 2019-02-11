@@ -3,6 +3,7 @@ import {
   DELETE_TASK,
   UPDATE_TASK,
   TOGGLE_TASK,
+  GET_TASK,
   UPDATE_USER,
   LOG_OUT_USER
 } from './constants';
@@ -10,7 +11,7 @@ import {
 export const tasks = (state = [], action = {}) => {
   switch (action.type) {
     case CREATE_TASK:
-      return [...state, { id: action.id, text: action.text, completed: false}];
+      return [...state, { id: action.id, title: action.title, contents: '', authorid: action.authorid, completed: false}];
     case TOGGLE_TASK:
       return state.map(task => {
         if ( task.id !== action.id ) {
@@ -26,8 +27,10 @@ export const tasks = (state = [], action = {}) => {
         if ( task.id !== action.id ) {
           return task;
         }
-        return { ...task, text: action.text }
+        return { ...task, title: action.title }
       });
+    case GET_TASK:
+      return [...state, ...action.tasks]
     default:
       return state;
   }

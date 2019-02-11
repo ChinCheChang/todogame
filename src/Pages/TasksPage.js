@@ -6,13 +6,14 @@ import { createTask, toggleTask, deleteTask, updateTask } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks
+    tasks: state.tasks,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateTask: (text) => dispatch(createTask(text)),
+    onCreateTask: (title, authorid, id) => dispatch(createTask(title, authorid, id)),
     onToggleTask: (taskId) => dispatch(toggleTask(taskId)),
     onDeleteTask: (taskId) => dispatch(deleteTask(taskId)),
     onUpdateTask: (taskId, text) => dispatch(updateTask(taskId, text))
@@ -23,7 +24,7 @@ class TasksPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      focused: -1,
+      focused: 0,
       focusedContents: '',
       createTaskTitle: ''
     }
@@ -43,12 +44,27 @@ class TasksPage extends Component {
   }
 
   onAddTaskSubmit = () => {
-    const { onCreateTask } = this.props;
+    const { onCreateTask, user } = this.props;
     if (this.state.createTaskTitle) {
-      onCreateTask(this.state.createTaskTitle)
-      this.setState({
-        createTaskTitle: ''
+      fetch('http://localhost:3001/tasks', {
+        method: 'post',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({
+          title: this.state.createTaskTitle,
+          contents: '',
+          authorid: user.id
+        })
       })
+        .then(res => res.json())
+        .then(task => {
+          console.log(task);
+          onCreateTask(this.state.createTaskTitle, user.id, task.id)
+          this.setState({
+            createTaskTitle: ''
+          })
+          if( task === 'add task error' ) throw(task);
+        })
+        .catch(err => console.log(err))
     }
   }
 
@@ -69,7 +85,7 @@ class TasksPage extends Component {
                 focused === task.id ? (
                   <InputTitle value={focusedContents} onChange={(e) => this.setState({focusedContents: e.target.value})}/>
                 ) : (
-                  <span>{task.text}</span>
+                  <span>{task.title}</span>
                 )
               }
               <IconContainer completed={task.completed}>
@@ -84,9 +100,9 @@ class TasksPage extends Component {
                 }
                 {
                   focused === task.id ? (
-                    <i onClick={() => {this.onFocusedTask(-1, '')}} className="fas fa-search-minus"></i>
+                    <i onClick={() => {this.onFocusedTask(0, '')}} className="fas fa-search-minus"></i>
                   ) : (
-                    <i onClick={() => {this.onFocusedTask(task.id, task.text)}} className="fas fa-ellipsis-v"></i>
+                    <i onClick={() => {this.onFocusedTask(task.id, task.title)}} className="fas fa-ellipsis-v"></i>
                   )
                 }
               </IconContainer>
