@@ -46,7 +46,7 @@ class TasksPage extends Component {
   onAddTaskSubmit = () => {
     const { onCreateTask, user } = this.props;
     if (this.state.createTaskTitle) {
-      fetch('https://guarded-dusk-16440.herokuapp.com//tasks', {
+      fetch('https://guarded-dusk-16440.herokuapp.com/tasks', {
         method: 'post',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify({
@@ -68,7 +68,7 @@ class TasksPage extends Component {
   }
 
   UpdateTask = (taskid, request, type) => {
-    fetch('https://guarded-dusk-16440.herokuapp.com//tasks', {
+    fetch('https://guarded-dusk-16440.herokuapp.com/tasks', {
       method: 'put',
       headers: {'Content-type': 'application/json'},
       body: JSON.stringify({
