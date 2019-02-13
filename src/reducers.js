@@ -30,7 +30,7 @@ export const tasks = (state = [], action = {}) => {
         return { ...task, title: action.title }
       });
     case GET_TASK:
-      return [...state, ...action.tasks]
+      return [...action.tasks]
     default:
       return state;
   }

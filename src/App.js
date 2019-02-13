@@ -122,11 +122,11 @@ class App extends Component {
             <Link to="/">Home</Link>
             <Link to="/calendar">Calendar</Link>
             <Link to="/tasks">Tasks</Link>
-            <Link to="/about">About</Link>
+            {/* <Link to="/about">About</Link> */}
           </PageNav>
         </Navbar>
         <Route path="/" exact component={IndexPage} />
-        <Route path="/about" component={Loading} />
+        {/* <Route path="/about" component={Loading} /> */}
         <Route path="/calendar" component={CalendarPage} />
         <Route path="/tasks" component={TasksPage} />
       </div>

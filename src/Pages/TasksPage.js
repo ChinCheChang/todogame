@@ -45,7 +45,7 @@ class TasksPage extends Component {
 
   onAddTaskSubmit = () => {
     const { onCreateTask, user } = this.props;
-    if (this.state.createTaskTitle) {
+    if (this.state.createTaskTitle && user.id) {
       fetch('https://guarded-dusk-16440.herokuapp.com/tasks', {
         method: 'post',
         headers: {'Content-type': 'application/json'},
@@ -57,13 +57,13 @@ class TasksPage extends Component {
       })
         .then(res => res.json())
         .then(task => {
-          if( task === 'add task error' ) throw(task);
           onCreateTask(this.state.createTaskTitle, user.id, task.id)
-          this.setState({
-            createTaskTitle: ''
-          })
+          this.setState({createTaskTitle: ''})
+          if( task === 'add task error' ) throw(task);
         })
         .catch(err => console.log(err))
+    } else {
+      onCreateTask(this.state.createTaskTitle)
     }
   }
 
